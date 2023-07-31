@@ -1,0 +1,50 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load jformat %}
+
+{% block title %}Blog | Posts{% endblock %}
+
+{% block content %}
+    <main class="main">
+        <div class="search">
+            <svg class="search__svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+
+            <input type="text" class="search__input" placeholder="جستجو..."/>
+        </div>
+
+        <section class="container post-section">
+            <div class="post_wrapper">
+                {% for post in posts %}
+                    <div class="post">
+                        <a href="{{ post.get_absolute_url }}" class="post__image-wrapper">
+                            <img class="post__image" src="{% static 'images/04.png' %}" alt="#">
+                        </a>
+                        <div class="post__title-wrapper">
+                            <a href="{{ post.get_absolute_url }}" class="post__title">{{ post.title }}</a>
+                        </div>
+
+                        <div class="post__date-wrapper">
+                            <p class="post__date">{{ post.publish|jformat:"%d %Y %B" }}</p>
+                            {% if post.reading_time %}
+                                <p class="post__reading-time">{{ post.reading_time }} دقیقه زمان مطالعه</p>
+                            {% endif %}
+                        </div>
+
+                        <p class="post__description">{{ post.description }}</p>
+
+                        <div class="post__line"></div>
+
+                        <div class="post__writer-wrapper">
+                            <img class="post__writer-image" src="{% static 'images/mahdi.jpg' %}" alt="#">
+                            <a class="post__writer" href="#">{{ post.auther.first_name }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    {% include 'partials/pagination.html' with page=posts %}
+{% endblock %}

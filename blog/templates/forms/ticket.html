@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="contactus">
+        <h2 class="contactus__title">تماس با ما</h2>
+        <form method="post" class="contactus__form">
+            {% csrf_token %}
+            <div class="contactus-top">
+                <div class="contactus__elemetnt-wrapper">
+                    <label for="ticket__name" class="contactus__label">نام</label>
+                    <input type="text" name="name" id="ticket__name" required class="ticket__name">
+                </div>
+
+                <div class="contactus__elemetnt-wrapper">
+                    <label for="ticket__email" class="contactus__label">ایمیل</label>
+                    <input type="email" name="email" id="ticket__email" required class="ticket__email">
+                </div>
+
+                <div class="contactus__elemetnt-wrapper">
+                    <label for="ticket__phone" class="contactus__label">شماره همراه</label>
+                    <input type="tel" name="phone" id="ticket__phone" required class="ticket__phone">
+                </div>
+
+                <div class="contactus__elemetnt-wrapper">
+                    <label for="ticket__select" class="contactus__label">موضوع</label>
+                    <select name="subject" id="ticket__select" class="ticket__select">
+                        <option value="انتقاد">انتقاد</option>
+                        <option value="پیشنهاد">پیشنهاد</option>
+                        <option value="گزارش">گزارش</option>
+                        <option value="درخواست تماس">درخواست تماس</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="contactus__elemetnt-wrapper">
+                <label for="ticket__description" class="contactus__label">دیدگاه</label>
+                <textarea name="message" id="ticket__description" cols="30" rows="10" class="ticket__description" ></textarea>
+            </div>
+
+            <input type="submit" class="comment-form__btn" value="ارسال درخواست">
+        </form>
+    </div>
+</div>

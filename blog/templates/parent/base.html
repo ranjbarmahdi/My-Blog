@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="da" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/base.css' %}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% include 'partials/navigation.html' %}
+
+    {% block content %}{% endblock %}
+
+    {% include 'partials/footer.html'%}
+
+<script src="{% static 'scripts/base.js' %}"></script>
+</body>
+</html>

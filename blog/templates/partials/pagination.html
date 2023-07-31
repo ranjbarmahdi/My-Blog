@@ -1,0 +1,12 @@
+
+<div class="pagination">
+    {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}" class="pagination__previous">قبل</a>
+    {% endif %}
+
+    <span class="pagination__pages">صفحه {{ page.number }} از {{ page.paginator.num_pages }}</span>
+
+    {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}" class="pagination__next">بعد</a>
+    {% endif %}
+</div>
