@@ -1,0 +1,1287 @@
+/* =========================<< CSS Reset >>=========================*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+
+/* =========================<< Fonts >>=========================*/
+@font-face {
+    font-family: "DoranBold";
+    src: url("../fonts/Doran-Bold.woff2") format("woff2");
+}
+
+
+@font-face {
+    font-family: "DoranRegular";
+    src: url("../fonts/Doran-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "DoranExtraBold";
+    src: url("../fonts/Doran-ExtraBold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "DoranBold";
+    src: url("../fonts/Doran-Bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "DoranLight";
+    src: url("../fonts/Doran-Light.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "DoranMedium";
+    src: url("../fonts/Doran-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "DoranThin";
+    src: url("../fonts/Doran-Thin.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "IranSans";
+    src: url("../fonts/IRANSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Lalezar";
+    src: url("../fonts/Lalezar-Regular.ttf") format("truetype");
+}
+
+
+
+/* =========================<< Grid >>=========================*/
+.container{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px){
+    .container{
+        width: 54rem;
+    }
+}
+
+@media (min-width: 768px){
+    .container{
+        width: 72rem;
+    }
+
+    .post{
+        width: calc(100%/2 - 2rem);
+    }
+}
+
+@media (min-width: 992px){
+    .container{
+        width: 96rem;
+    }
+
+}
+
+@media (min-width: 1200px){
+    .container{
+        width: 114rem;
+    }
+
+    .post{
+        width: calc(100%/3 - 2rem);
+    }
+}
+
+
+@media (min-width: 1400px){
+    .container{
+        width: 137rem;
+    }
+}
+
+/* =========================<< root >>=========================*/
+:root{
+    --white-decorator: #F6F4EB;
+    --shark-thresher: #91c8e4;
+    --blue-promise: #749bc2;
+    --moonlight-underwater: #4682a9;
+    --blue-sky: #1D5D9B;
+    --gray-title: rgb(49, 49, 51);
+    --gray-text:  rgb(109, 108, 108);
+
+}
+
+
+/* =========================<< self reset >>=========================*/
+html{
+    font-size: 62.5%;
+}
+
+body{
+    background-color: rgba(203, 223, 226, 0.065);
+    font-size: 1.6rem;
+    font-family: "IranSans";
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+
+/* =========================<< Index >>=========================*/
+
+/* =========================<< Nav Menu >>=========================*/
+
+.header{
+
+}
+
+.nav-wrapper{
+    border-top:3px solid var(--blue-sky);  
+
+    width: 100%;
+    height: 8rem;
+    
+    background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav{
+    width: 100%;
+    height: 100px;
+
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 90%;
+    height: 6rem;
+}
+
+.nav__logo{
+    font-family: "IranSans";
+    font-weight: 900;
+    font-size: 3rem;
+    color: var(--gray-title);
+
+    transition: all ease 300ms;
+}
+
+.nav__logo:hover{
+    transform: translateY(-2px);
+}
+
+.nav__logo--blue{
+    color: var(--blue-sky);
+}
+
+.menu{
+    display: flex;
+    height: 100%;
+}
+
+.menu__item{
+    margin-left: 4rem;
+    line-height: 6rem;
+}
+
+.menu__item:last-child{
+    margin-left: 0;
+}
+
+.menu__item-link{
+    font-family: "IranSans";
+    font-weight: 700;
+    color: var(--gray-title);
+
+    transition: all ease 300ms;
+}
+
+.menu__item-link:hover{
+    color: var(--blue-sky);
+}
+
+.nav__btn{
+    display: block;
+    padding: 1rem 2rem;
+
+    font-family: "IranSans";
+
+    background-color: var(--blue-sky);
+    color: white;
+
+    border-radius: 1.3rem;
+
+    transition: all ease 300ms;
+}
+
+.nav__btn:hover{
+    transform: translateY(-2px);
+}
+
+/* =========================<< Search Box >>=========================*/
+.search{
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40%;
+
+    background-color: #89c2df;
+    padding: 1rem;
+    border-radius: 3rem;
+
+    height: 6rem;
+    
+    z-index: -1;
+}
+
+.search__svg{
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+    color: rgb(247, 251, 255);
+}
+
+.search__input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding-right: 1rem;
+}
+
+.search__input,
+.search__input::placeholder{
+    font-family: "IranSans";
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+/* =========================<< Main >>=========================*/
+
+.main{
+    margin-top: 12rem;
+}
+
+.post-section{
+    margin-top: 3rem;
+}
+
+.post_wrapper{
+    display: flex;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+
+    margin: 0 -1rem;
+}
+
+.post{
+    width: calc(100%/1 - 2rem);
+    margin: 1rem;
+
+    padding: 1.5rem;
+    background-color: #fff;
+
+    border-radius: 1.5rem;
+    box-shadow: 0px 0px 10px rgba(151, 151, 151, 0.24) ;
+}
+
+.post__image-wrapper{
+    display: block;
+    width: 100%;
+    height: 18rem;
+    overflow: hidden;
+
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+.post__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post__title-wrapper{
+    position: relative;
+}
+
+.post__title-wrapper::before{
+    content: "";
+    width: 0.3rem;
+    height: 3rem;
+    background-color: var(--blue-sky);
+    position: absolute;
+    border-radius: 1000px;
+
+    right: 0;   
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.post__title{
+    display: block;
+    margin-top: 3rem;
+
+    font-family: "DoranBold";
+    font-size: 1.8rem;
+    color: var(--gray-title);
+
+    line-clamp: 1;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    height: 2rem;
+
+    padding-right: 1.5rem;
+
+    transition: all ease 300ms;
+}
+
+.post__title:hover{
+    color: var(--blue-sky);
+}
+
+.post__date-wrapper{
+    margin-top: 3rem;
+
+    display: flex;
+    align-items: center;
+
+    font-family: "IranSans";
+    color: var(--gray-text);
+}
+
+.post__date{
+    margin-left: 1rem;
+}
+
+.post__reading-time{
+    position: relative;
+    padding-right: 3rem;
+}
+
+.post__reading-time::before{
+    content: "";
+    width: 2rem;
+    height: 0.3rem;
+    background-color: var(--blue-sky);
+    border-radius: 100px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-100%);
+    position: absolute;
+
+}
+
+.post__description{
+    margin-top: 2rem;
+    font-family: "IranSans";
+    color: var(--gray-text);
+    line-height: 1.5;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.post__line{
+    border-top: 1px dashed var(--gray-text);
+    margin: 3rem 0; 
+}
+
+.post__writer-wrapper{
+    height: 4rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.post__writer-image{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.post__writer{
+    font-weight: bold;
+    color: var(--gray-title);
+}
+
+.post__writer:hover{
+    color: var(--blue-sky);
+}
+
+
+/* =========================<< Pagination >>=========================*/
+.pagination{
+    margin: 0 auto;
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    margin-top: 3rem;
+
+    font-family: "IranSans";
+    font-size: 1.4rem;
+
+}
+
+.pagination__previous,
+.pagination__next{
+    background-color: var(--blue-sky);
+
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.8rem;
+
+    color: white;
+
+    box-shadow: 0px 0px 8px var(--blue-promise);
+}
+
+.pagination__pages{
+    padding: 0.8rem 2rem;
+    background-color: #fff;
+    border-radius: 0.8rem;
+    color: var(--gray-text);
+
+    box-shadow: 0px 0px 8px rgb(207, 205, 205);
+
+    border: 1px solid rgb(209, 209, 209);
+
+}
+
+.pagination__next{
+
+}
+
+
+/* =========================<< Footer >>=========================*/
+.footer{
+    /* height: 300px; */
+    background-color: #fff;
+    margin-top: 4rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px -8px 24px;
+
+    padding: 3rem 0;
+}
+
+.footer-wrapper{
+    margin-left: -2rem;
+    margin-right: -2rem;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* =========================<< Footer Box >>=========================*/
+.footer-box{
+    /* height: 200px; */
+
+    width: calc(100%/1 - 4rem);
+    margin: 2rem;
+    /* border: 1px solid red; */
+
+}
+
+.footer-box-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.footer-box__title{
+    font-family: "IranSans";
+    font-weight: bolder;
+}
+
+.footer-box__line{
+    display: block;
+    width: 2rem;
+    height: 0.3rem;
+    background-color: rgb(207, 206, 206);
+    position: relative;
+
+    border-radius: 100px;
+}
+
+.footer-box__line::after{
+    content: "";
+
+    width: 1rem;
+    height: 0.3rem;
+    background-color: var(--blue-sky);
+
+    position: absolute;
+    right: 0;
+    top: -7px;
+
+    border-radius: 100px;
+}
+
+
+.footer-box-bottom{
+    margin-top: 2rem;
+    
+}
+
+.footer-post{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.footer-post__image-wrapper{
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    overflow: hidden;
+
+    border-radius: 1.5rem;
+    flex-shrink: 0;
+    transition: all ease 300ms;
+}
+
+.footer-post__image-wrapper:hover{
+    transform: rotate(20deg);
+}
+
+.footer-post__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.footer-post-contetnt{
+    overflow: hidden;
+    width: fit-content;
+}
+
+.footer-post__title{
+    font-family: "IranSans";
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--gray-title);
+    display: block;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    transition: all ease 200ms;
+
+    outline: 0 solid var(--blue-sky);
+    outline-offset: 1px;
+
+    line-height: 1.5;
+}
+
+.footer-post__title:hover{
+    outline-width: 2px;
+}
+
+.footer-post__date{
+    font-family: "IranSans";
+    color: var(--gray-text);
+    font-size: 1.2rem;
+
+    margin-top: 1rem;
+}
+
+/* =========================<< Footer Tags >>=========================*/
+.footer__tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap:2;
+}
+
+.footer__tag{
+    display: block;
+    padding: 0.3rem 0.5rem;
+
+    border-radius: 1.5rem;
+    box-shadow: 0 1px 3px rgba(214, 213, 213, 0.548);
+    margin-left: 2rem;
+    margin-top: 1.2rem;
+    font-size: 1.3rem;
+
+    transition: all ease 300ms;
+}
+
+.footer__tag:hover{
+    transform: translateY(-2px);
+}
+
+/* =========================<< Follow Me >>=========================*/
+.followme{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+}
+
+.followme__link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    width: 5.2rem;
+    height: 5.2rem;
+
+    border-radius: 1.3rem;
+
+    transition: all ease 300ms;
+}
+
+.followme__link:hover{
+    transform: rotate(20deg);
+}
+
+.followme__link:nth-child(1){background-color: #B70404;}
+.followme__link:nth-child(2){background-color: #e0caa4;}
+.followme__link:nth-child(3){background-color: #DB005B;}
+.followme__link:nth-child(4){background-color: #ABC4AA;}
+.followme__link:nth-child(5){background-color: #F79327;}
+.followme__link:nth-child(6){background-color: #675D50;}
+
+
+.followme__svg{
+    color: white;
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+/* =========================<< Footer About Me >>=========================*/
+.about-me{
+
+}
+
+.about-me-top{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.about-me__image-wrapper{
+    width: 8rem;
+    height: 8rem;
+    overflow: hidden;
+    border-radius: 100%;
+
+    outline: 2px solid #F79327 ;
+}   
+
+.about-me__image{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    /* border-radius: 100%; */
+}
+
+.about-me__name{
+    font-weight: bold;
+    color: var(--gray-title);
+
+    transition: all ease 300ms;
+}
+
+.about-me__name:hover{
+    color: var(--blue-sky);
+}
+
+.about-me__description{
+    margin-top: 1rem;
+
+    line-height: 1.5;
+    color: var(--gray-text);
+
+    font-size: 1.4rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* ==================================================<< Post Detail>>==================================================*/
+
+.post-detail-wrapper{
+    max-width: 86rem;
+    background-color: white;
+    margin-top: 12rem;
+    margin: 12rem auto 0 auto;
+    border-radius: 1.5rem;
+    overflow: hidden;
+
+    box-shadow: 0 5px 5px 2px rgba(194, 190, 190, 0.151);
+}
+
+.post-detail__image{
+    width: 100%;
+
+    object-fit: cover;
+}
+
+.post-detail-content{
+    padding: 4rem;
+}
+
+/* =========================<< Post Detail Top >>=========================*/
+.post-detail-top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.4rem;
+    color: var(--gray-text);
+    font-family: 'IranSans';
+}
+
+.post-detail__title{
+    text-align: center;
+    
+    font-family: "IranSans";
+    font-weight: 900;
+    color: var(--gray-title);
+    font-size: 2.8rem;
+
+}
+
+
+.post__date-wrapper{
+
+}
+
+.post__date{
+
+}
+
+.post__reading-time{
+
+}
+
+.comment-count-wraper{
+    margin-right: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    gap: 0.8rem;
+}
+
+.comment-svg{
+    width: 1.8rem;
+    height: 1.8rem;
+    color: var(--blue-sky);
+    cursor: pointer;
+}
+
+.comment-count{
+    margin-top: 0.44rem;
+}
+
+.comment-visit-wraper{
+    margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.visit-svg{
+    width: 1.7rem;
+    height: 1.7rem;
+    color: var(--blue-sky);
+}
+
+.visit-count{
+    margin-top: 0.44rem;
+}
+
+
+
+/* =========================<< Post Detail Description >>=========================*/
+.post-detail__description{
+    margin-top: 5rem;
+    font-family: "IranSans";
+    color: var(--gray-text);
+    font-size: 1.7rem;
+    line-height: 2;
+    /* text-align: justify; */
+}
+
+/* =========================<< Post Detail tags >>=========================*/
+.post-detail__tags{
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.post-detail__tags-title{
+    font-weight: 900;
+    color: var(--gray-title);
+    text-align: center;
+}
+
+.footer__tags{
+
+}
+
+.post-detail__tags>.footer__tags{
+    margin-top: 1.5rem;
+    max-width: 30rem;
+    justify-content: center;
+}
+
+/* =========================<< Related Post >>=========================*/
+.related-posts{
+    max-width: 86rem;
+    margin: 5rem auto 0 auto;
+    padding: 0 4rem;    
+}
+
+.related-posts .footer-box__title{
+    font-size: 2.7rem;
+}
+
+.related-posts-wrapper{
+    margin-top: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
+.related-posts-wrapper .footer-post{
+    width: calc(100%/1 - 2rem);
+    height: 11rem;
+    background-color: #fff;
+    margin: 1rem 1rem;
+    box-shadow: 0 0px 5px 2px rgba(194, 190, 190, 0.151);
+    border-radius: 1.5rem;
+    padding: 1rem 1.5rem;
+    gap: 2.8rem;
+}
+
+.related-posts-wrapper .footer-post__title{
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.related-posts-wrapper .footer-post__image-wrapper,
+.related-posts-wrapper .footer-post__image{
+    width: 8rem;
+    height: 8rem;
+}
+
+/* =========================<< Post Detail Comment >>=========================*/
+.post-comment-form-wrapper{
+    max-width: 86rem;
+    background-color: white;
+    margin: 5rem auto 0 auto;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    padding: 4rem;
+    box-shadow: 0 5px 5px 2px rgba(194, 190, 190, 0.151);
+}
+
+.post-comment-form-wrapper .footer-box__title{
+    font-size: 2.7rem;
+    font-weight: 900;
+    color: var(--gray-title);
+}
+
+.comment{
+    margin-top: 4rem;
+}
+
+.comment__description{
+    height: 17rem;
+    width: 100%;
+    resize: none;
+    padding: 2.5rem;
+}
+
+.comment-input-wrapper{
+    margin-top: 1rem;
+    display: flex;
+    gap: 3rem;
+}
+
+.comment__name{
+    height: 47px;
+    padding: 1.5rem 2.5rem;
+    flex-grow: 1;
+}
+
+.comment__email{
+    height: 47px;
+    padding: 1.5rem 2.5rem;
+    flex-grow: 1;
+}
+
+.comment__description,
+.comment__description::placeholder,
+.comment__name,
+.comment__name::placeholder,
+.comment__email,
+.comment__email::placeholder{
+    font-family: "IranSans";
+    color: var(--gray-text);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.comment__description,
+.comment__name,
+.comment__email{
+    border: 1px solid rgba(65, 169, 201, 0.116);
+    outline: none;
+    background-color: rgba(118, 175, 192, 0.068);
+    transition: all ease 300ms;
+}
+
+
+.comment__description:focus,
+.comment__name:focus,
+.comment__email:focus{
+    border-color: rgba(65, 169, 201, 0.425);;
+}
+
+/* =========================<< Post Detail Comment CheckBox >>=========================*/
+.comment-checkbox-wrapper{
+    margin-top: 1rem;
+    position: relative;
+}
+
+.comment__ckeck{
+    display: block;
+    right: 0;
+    top: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.comment__check-label{
+    display: block;
+    text-indent: 3rem;
+    line-height: 1.7;
+    font-size: 1.3rem;
+    color: var(--gray-text);
+    cursor: pointer;
+}
+
+.comment-form__btn{
+    display: block;
+    background-color: var(--blue-sky);
+    border: none;
+    outline: none;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    font-family: "IranSans";
+    font-weight: 900;
+    width: 50%;
+    min-width: 20rem;
+    font-size: 1.5rem;
+    transition: all ease 300ms;
+}
+
+.comment-form__btn:hover{
+    box-shadow: 0 0 5px 5px #1d5c9b46;
+}
+
+/* =========================<< Person Comments >>=========================*/
+.post-comments{
+    max-width: 86rem;
+    margin: 4rem auto 0 auto;
+  
+    line-height: 1.5;
+    font-weight: bolder;
+    font-size: 1.7rem;
+}
+
+.post__comment{
+    margin-top: 2rem;
+    padding: 2rem 4rem;
+    background-color: #fff;
+    box-shadow: 0 0px 5px 5px rgba(194, 190, 190, 0.089);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    font-size: 1.5rem;
+
+    position: relative;
+}
+
+.post__comment-write{
+
+}
+
+.post__comment-duration{
+    font-size: 1.2rem;
+    color: var(--gray-text);
+    margin-top: 0.8rem;
+}
+
+.comment__like-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: 0.3rem 0.8rem;
+    
+    background-color: #b7040423;
+    border: 1px solid #b704043d;
+    border-radius: 0.7rem;
+
+    position: absolute;
+    top: 2rem;
+    left: 4rem;
+
+    transition: all ease 300ms;
+}
+
+.comment__like-link{
+    display: block;
+    width: 1.7rem;
+    height: 1.7rem;
+}
+
+.comment__like-svg{
+    width: 1.7rem;
+    height: 1.7rem;
+    color: #B70404;
+}
+
+.comment__like-count{
+    color: #B70404;
+    font-size: 1.3rem;
+    padding-top: 0.4rem;
+}
+
+.comment__line{
+    border-top: 1px dashed rgba(133, 130, 130, 0.678);
+    margin: 3rem 0;
+}
+
+.comment__text{
+    font-weight: normal;
+    color: var(--gray-text);
+    line-height: 1.5;
+    text-indent: 3rem;
+}
+
+
+/* ==================================================<< Contact us>>==================================================*/
+
+.contactus{
+    max-width: 86rem;
+    background-color: white;
+    margin: 5rem auto 0 auto;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    padding: 4rem;
+    box-shadow: 0 0px 5px 3px rgba(194, 190, 190, 0.151);
+    margin-top: 12rem;
+}
+
+.contactus__title{
+    font-size: 2.8rem;
+    font-weight: bold;
+}
+
+.contactus__form{
+    margin-top: 4rem;
+}
+
+.contactus-top{
+    display: flex;
+    flex-wrap: wrap;
+    /* margin: 0 -1rem; */
+}
+
+.contactus-top .contactus__elemetnt-wrapper{
+    width: calc(100%/1 - 1rem);
+    margin: 1rem;
+}
+
+.contactus-top + .contactus__elemetnt-wrapper{
+    
+}
+.contactus__elemetnt-wrapper{
+    margin-top: 2rem;
+    width: calc(100%/1 - 2rem);
+    margin: 1rem;
+}
+
+.contactus__label{
+    display: block;
+    line-height: 1.5;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    color: var(--gray-text);
+    cursor: pointer;
+}
+
+
+.ticket__name,
+.ticket__email,
+.ticket__phone,
+.ticket__select,
+.ticket__description{
+    width: 100%;
+    height: 47px;
+    padding: 1.5rem 2.5rem;
+    border: 1px solid rgba(65, 169, 201, 0.116);
+    outline: none;
+    background-color: rgba(118, 175, 192, 0.068);
+    transition: all ease 300ms;
+    font-family: "IranSans";
+    color: var(--gray-text);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.ticket__name:focus,
+.ticket__email:focus,
+.ticket__phone:focus,
+.ticket__select:focus,
+.ticket__description:focus{
+    border-color: rgba(65, 169, 201, 0.425);;
+}
+
+.ticket__description{
+    height: 17rem;
+    width: 100%;
+    resize: none;
+    padding: 2rem;
+}
+
+
+
+/* =========================<< Responsive >>=========================*/
+
+@media (min-width: 576px){
+    
+}
+
+@media (min-width: 768px){
+    .post{
+        width: calc(100%/2 - 2rem);
+    }
+
+    .footer-box{
+        width: calc(100%/2 - 4rem);
+    }
+
+    .related-posts-wrapper .footer-post{
+        width: calc(100%/2 - 2rem);
+    }
+    
+}
+
+@media (min-width: 992px){
+    .contactus-top .contactus__elemetnt-wrapper{
+        width: calc(100%/2 - 2rem);
+    }
+}
+
+@media (min-width: 1200px){
+    .post{
+        width: calc(100%/3 - 2rem);
+    }
+
+    .footer-box{
+        width: calc(100%/4 - 4rem);
+    }
+
+
+}
+
+
+@media (min-width: 1400px){
+
+}

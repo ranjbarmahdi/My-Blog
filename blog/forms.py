@@ -1,0 +1,10 @@
+from django import forms
+
+
+# =====================================<< Ticket Form >>=====================================
+class TicketForm(forms.Form):
+    name = forms.CharField()
+    email = forms.EmailField()
+    phone = forms.CharField()
+    subject = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea)
