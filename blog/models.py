@@ -101,3 +101,46 @@ class Ticket(models.Model):
     # ----------------------------------------------------
     def __str__(self):
         return self.subject
+
+
+# =====================================<< Comment Model >>=====================================
+class Comment(models.Model):
+
+    # ----------------------------------------------------
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', verbose_name='پست')
+
+    # ----------------------------------------------------
+    name = models.CharField(max_length=250, verbose_name='نام')
+    email = models.EmailField(max_length=250, verbose_name='ایمیل')
+    body = models.TextField(verbose_name='پیام')
+
+    create = jmodels.jDateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    update = jmodels.jDateTimeField(auto_now_add=True, verbose_name='تاریخ ویرایش')
+
+    send_mail = models.BooleanField(default=False, verbose_name='ارسال ایمیل')
+
+    active = models.BooleanField(default=False, verbose_name='وضعیت')
+
+    # ----------------------------------------------------
+    objects = jmodels.jManager()
+
+    # ----------------------------------------------------
+    class Meta:
+        ordering = ['-create']
+        indexes = [
+            models.Index(fields=['-create'])
+        ]
+        verbose_name = "کامنت"
+        verbose_name_plural = "کامنت ها"
+
+    # ----------------------------------------------------
+    def __str__(self):
+        return f"{self.name}:{self.post}"
+
+
+
+
+
+
+
+

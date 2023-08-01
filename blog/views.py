@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import TicketForm
-
+from .forms import TicketForm, CommentForm
+from django.views.decorators.http import require_POST
 
 # =====================================<< Index View >>=====================================
 def index(request):
@@ -18,7 +18,7 @@ def post_list(request, category=None):
 
     print(category)
 
-    paginator = Paginator(posts, 6)
+    paginator = Paginator(posts, 1)
     page_number = request.GET.get('page', 1)
     try:
         posts = paginator.page(page_number)
@@ -55,10 +55,30 @@ def ticket(request):
                 subject=cd['subject'],
                 message=cd['message']
             )
-            redirect('blog:post_list')
+            # redirect('blog:post_list')
     else:
         form = TicketForm()
     context = {
         'form': form
     }
     return render(request, 'blog/contact-us.html', context)
+
+
+# =====================================<< Comment View >>=====================================
+@require_POST
+def post_comment(request, id):
+    post = get_object_or_404(Post, id=id)
+    comment = None
+    form = CommentForm(data=request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.save()
+        return redirect('blog:post_detail', post.id)
+
+    context = {
+        'post': post,
+        'form': form,
+        'comment': comment
+    }
+    return render(request, 'forms/comment.html', context)

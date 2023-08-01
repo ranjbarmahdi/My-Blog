@@ -4,15 +4,16 @@
         <h2 class="footer-box__title">دیدگاهتان را بنویسید</h2>
         <span class="footer-box__line"></span>
     </div>
-    <form action="" class="comment">
-        <textarea name="" id="" cols="30" rows="10" class="comment__description" placeholder="دیدگاه" required></textarea>
+    <form action="{% url 'blog:post_comment' post.id %}" method="post" class="comment">
+        {% csrf_token %}
+        <textarea name="body" id="" cols="30" rows="10" class="comment__description" placeholder="دیدگاه" required></textarea>
         <div class="comment-input-wrapper">
-            <input type="text" required placeholder="نام" class="comment__name">
-            <input type="email" required placeholder="ایمیل" class="comment__email">
+            <input name="name" type="text" required placeholder="نام" class="comment__name">
+            <input name="email" type="email" required placeholder="ایمیل" class="comment__email">
         </div>
 
         <div class="comment-checkbox-wrapper">
-            <input type="checkbox" name="" id="comment__ckeck" class="comment__ckeck">
+            <input type="checkbox" name="send_mail" id="comment__ckeck" class="comment__ckeck">
             <label for="comment__ckeck" class="comment__check-label">ذخیره نام، ایمیل و وبسایت من در مرورگر برای زمانی که دوباره دیدگاهی می‌نویسم.</label>
         </div>
         <input type="submit" class="comment-form__btn" value="فرستادن دیدگاه">
