@@ -6,7 +6,7 @@
 {% block content %}
    <div class="container">
     <div class="post-detail-wrapper">
-        <img class="post-detail__image" src="{% static 'images/04.png' %}" alt="#">
+        <img class="post-detail__image" src="{{ post.images.first.image_file.url }}" alt="#">
         <div class="post-detail-content">
             <div class="post-detail-top">
                 <h1 class="post-detail__title">{{ post.title }}</h1>
@@ -57,7 +57,7 @@
             {% for r_post in related_posts %}
                 <div class="footer-post">
                 <a href="{{ r_post.get_absolute_url }}" class="footer-post__image-wrapper">
-                    <img class="footer-post__image" src="{% static 'images/03.png' %}" alt="#">
+                    <img class="footer-post__image" src="{{ r_post.images.first.image_file.url }}" alt="#">
                 </a>
                 <div class="footer-post-contetnt">
                     <a class="footer-post__title" href="#">{{ r_post.title }}</a>
@@ -74,9 +74,9 @@
     {% include 'forms/comment.html' %}
 
     <div class="post-comments">
-        <p class="post-comments__count">{{ post.comments.count }} دیدگاه برای این پست ثبت شده است.</p>
+        <p class="post-comments__count">{{ comments.count }} دیدگاه برای این پست ثبت شده است.</p>
 
-        {% for comment in post.comments.all %}
+        {% for comment in comments %}
             <div class="post__comment">
                 <a href="" class="post__comment-write">{{ comment.name }}</a>
                 <p class="post__comment-duration">2 هفته پیش</p>

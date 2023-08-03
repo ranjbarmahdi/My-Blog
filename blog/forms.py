@@ -17,3 +17,8 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['name', 'email', 'body', 'send_mail']
 
+
+# =====================================<< Search Form >>=====================================
+class SearchForm(forms.Form):
+    query = forms.CharField()
+

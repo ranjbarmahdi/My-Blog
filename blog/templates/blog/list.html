@@ -6,20 +6,14 @@
 
 {% block content %}
     <main class="main">
-        <div class="search">
-            <svg class="search__svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-            </svg>
-
-            <input type="text" class="search__input" placeholder="جستجو..."/>
-        </div>
+        {% include 'partials/search.html' %}
 
         <section class="container post-section">
             <div class="post_wrapper">
                 {% for post in posts %}
                     <div class="post">
                         <a href="{{ post.get_absolute_url }}" class="post__image-wrapper">
-                            <img class="post__image" src="{% static 'images/04.png' %}" alt="#">
+                            <img class="post__image" src="{{ post.images.first.image_file.url }}" alt="#">
                         </a>
                         <div class="post__title-wrapper">
                             <a href="{{ post.get_absolute_url }}" class="post__title">{{ post.title }}</a>

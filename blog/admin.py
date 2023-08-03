@@ -4,6 +4,17 @@ import django_jalali.admin as jadimn
 from django_jalali.admin.filters import JDateFieldListFilter
 
 
+# =====================================<< InlineAdmin Classes >>=====================================
+class ImageInline(admin.TabularInline):
+    model = Image
+    extra = 0
+
+
+class CommentInline(admin.TabularInline):
+    model = Image
+    extra = 0
+
+
 # =====================================<< Post Admin >>=====================================
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -16,6 +27,8 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ['-publish', 'title']
     search_fields = ['title', 'description']
     prepopulated_fields = {'slug': ['title']}
+
+    inlines = [ImageInline, CommentInline]
 
 
 # =====================================<< Category Admin >>=====================================
@@ -45,4 +58,10 @@ class CommentAdmin(admin.ModelAdmin):
     list_editable = ['active']
     list_display_links = ['id', 'post']
 
+
+# =====================================<< Image Admin >>=====================================
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ['id', 'post', 'title', 'create']
+    list_display_links = ['id', 'post']
 

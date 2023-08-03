@@ -17,7 +17,7 @@
                     {% for post in last_posts %}
                         <div class="footer-post">
                         <a href="{{ post.get_absolute_url }}" class="footer-post__image-wrapper">
-                            <img class="footer-post__image" src="{% static 'images/01.png' %}" alt="#">
+                            <img class="footer-post__image" src="{{ post.images.first.image_file.url }}" alt="#">
                         </a>
                         <div class="footer-post-contetnt">
                             <a class="footer-post__title" href="{{ post.get_absolute_url }}">{{ post.title }}</a>

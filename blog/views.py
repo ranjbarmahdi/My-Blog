@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import TicketForm, CommentForm
+from .forms import TicketForm, CommentForm, SearchForm
 from django.views.decorators.http import require_POST
+from django.contrib.postgres.search import TrigramSimilarity, SearchRank, SearchQuery, SearchVector
+
 
 # =====================================<< Index View >>=====================================
 def index(request):
@@ -18,7 +20,7 @@ def post_list(request, category=None):
 
     print(category)
 
-    paginator = Paginator(posts, 1)
+    paginator = Paginator(posts, 6)
     page_number = request.GET.get('page', 1)
     try:
         posts = paginator.page(page_number)
@@ -36,10 +38,50 @@ def post_list(request, category=None):
 # =====================================<< Post Detail View >>=====================================
 def post_detail(request, id):
     post = get_object_or_404(Post, status=Post.Status.PUBLISHED, id=id)
+    comments = post.comments.filter(active=True)
+
     context = {
         'post': post,
+        'comments': comments,
     }
     return render(request, 'blog/detail.html', context)
+
+
+# =====================================<< Ticket View >>=====================================
+def post_search(request):
+    query = None
+    results = []
+    if 'query' in request.GET:
+        form = SearchForm(data=request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+
+            search_query = SearchQuery(query)
+            search_vector = SearchVector('title', 'description')
+            search_rank = SearchRank(search_vector, search_query)
+            results = Post.published.annotate(search=search_vector, rank=search_rank)\
+                .filter(search=search_query).order_by('-rank')
+
+            # results_1 = Post.published.annotate(similarity=TrigramSimilarity('title', query))\
+            #     .filter(similarity__gte=0.1)
+            # results_2 = Post.published.annotate(similarity=TrigramSimilarity('description', query))\
+            #     .filter(similarity__gte=0.1)
+            # results = (results_1 | results_2).order_by('-similarity')
+
+    paginator = Paginator(results, 6)
+    page_number = request.GET.get('page', 1)
+    try:
+        results = paginator.page(page_number)
+    except PageNotAnInteger:
+        results = paginator.page(1)
+    except EmptyPage:
+        results = paginator.page(paginator.num_pages)
+
+    context = {
+        'query': query,
+        'posts': results,
+    }
+    return render(request, 'blog/list.html', context)
 
 
 # =====================================<< Ticket View >>=====================================

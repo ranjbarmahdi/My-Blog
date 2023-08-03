@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django_jalali.db import models as jmodels
 from django.urls import reverse
+from django_resized import ResizedImageField
 
 
 # =====================================<< Category Model >>=====================================
@@ -76,6 +77,26 @@ class Post(models.Model):
     # ----------------------------------------------------
     def __str__(self):
         return self.title
+
+
+# =====================================<< Image Model >>=====================================
+class Image(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images', verbose_name='پست')
+    image_file = ResizedImageField(upload_to="post_images/", verbose_name='فایل عکس')
+    title = models.CharField(null=True, blank=True, max_length=250, verbose_name='عنوان')
+    description = models.TextField(null=True, blank=True, verbose_name='توضیحات')
+    create = jmodels.jDateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-create']
+        indexes = [
+            models.Index(fields=['-create'])
+        ]
+        verbose_name = "تصویر"
+        verbose_name_plural = "تصویرها"
+
+    def __str__(self):
+        return self.title if self.title else "None"
 
 
 # =====================================<< Ticket Model >>=====================================
