@@ -1,0 +1,60 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}Create Post{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="contactus">
+            <h2 class="contactus__title">ایجاد پست جدید</h2>
+            <form method="post" class="contactus__form" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="contactus__elemetnt-wrapper">
+                    <label for="ticket__phone" class="contactus__label" id="create-post-title" >عنوان</label>
+                    <input type="text" id="ticket__phone" required class="ticket__phone" name="title">
+                </div>
+
+                <div class="contactus__elemetnt-wrapper">
+                    <label for="ticket__phone" class="contactus__label" id="create-post-title"  >زمان مطالعه</label>
+                    <input type="number"  min="0" id="ticket__phone" required class="ticket__phone" name="reading_time">
+                </div>
+
+                <div class="contactus__elemetnt-wrapper">
+                    <label for="ticket__description" class="contactus__label">متن</label>
+                    <textarea name="description" required id="ticket__description" cols="30" rows="10" class="ticket__description" ></textarea>
+                </div>
+
+                <div class="contactus__elemetnt-wrapper">
+                    <span class="contactus__label">تصاویر</span>
+                    <input name="image1" class="image-upload" type="file" id="" >
+                    <input name="image2" class="image-upload" type="file" id="" >
+                </div>
+
+{#                <div class="contactus__elemetnt-wrapper">#}
+{#                    <span class="contactus__label">تصاویر موجود</span>#}
+{#                    <div class="create-posts-image-wrapper">#}
+{#                        <div class="create-post-image-wrapper">#}
+{#                            <img src="./images/01.png" class="create-post-image">#}
+{#                            <a href="#" class="delete-image">حذف</a>#}
+{#                        </div>#}
+{##}
+{#                        <div class="create-post-image-wrapper">#}
+{#                            <img src="./images/03.png" class="create-post-image">#}
+{#                            <a href="#" class="delete-image">حذف</a>#}
+{#                        </div>#}
+{##}
+{#                        <div class="create-post-image-wrapper">#}
+{#                            <img src="./images/05.png" class="create-post-image">#}
+{#                            <a href="#" class="delete-image">حذف</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+                <input type="submit" class="comment-form__btn" value="ایجاد پست">
+            </form>
+        </div>
+    </div>
+
+{#<input type="file" name="image1" accept="image/*" id="id_image1">#}
+{% endblock %}

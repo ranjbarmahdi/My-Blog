@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import TicketForm, CommentForm, SearchForm
+from .forms import TicketForm, CommentForm, SearchForm, CreatePostForm
 from django.views.decorators.http import require_POST
 from django.contrib.postgres.search import TrigramSimilarity, SearchRank, SearchQuery, SearchVector
 
@@ -47,7 +47,7 @@ def post_detail(request, id):
     return render(request, 'blog/detail.html', context)
 
 
-# =====================================<< Ticket View >>=====================================
+# =====================================<< Post Search View >>=====================================
 def post_search(request):
     query = None
     results = []
@@ -82,6 +82,39 @@ def post_search(request):
         'posts': results,
     }
     return render(request, 'blog/list.html', context)
+
+
+# =====================================<< Profile View >>=====================================
+def profile_posts(request):
+    user = request.user
+    posts = Post.published.filter(auther=user)
+    context = {
+        'posts': posts
+    }
+
+    return render(request, 'blog/profile-posts.html', context)
+
+
+# =====================================<< Create Post View >>=====================================
+def create_post(request):
+    if request.method == "POST":
+        form = CreatePostForm(request.POST, request.FILES)
+        print(form.is_valid())
+        if form.is_valid():
+            cd = form.cleaned_data
+            post = form.save(commit=False)
+            post.auther = request.user
+            post.save()
+
+            if file := cd['image1']:
+                Image.objects.create(post=post, image_file=file)
+
+            if file := cd['image2']:
+                Image.objects.create(post=post, image_file=file)
+    else:
+        form = CreatePostForm()
+
+    return render(request, 'blog/create-post.html', {'form': form})
 
 
 # =====================================<< Ticket View >>=====================================

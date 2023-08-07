@@ -1,0 +1,63 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+    <section class="profile">
+        <!---------------- Side Bar Start---------------->
+        <div class="profile-sidebar">
+            <img class="profile-image" src="{% static 'images/mahdi.jpg' %}" alt="">
+            <a href="" class="profile-name">{{ request.user.first_name }} {{ request.user.last_name }}</a>
+            <ul class="profile-menu">
+                <li class="profile-menu__item"><a class="profile-menu__link" href="#">داشبورد</a></li>
+                <li class="profile-menu__item"><a class="profile-menu__link" href="{% url 'blog:profile_posts' %}">پست ها</a></li>
+            </ul>
+        </div>
+        <!---------------- Side Bar End---------------->
+
+        <div class="profile-content">
+
+            <!---------------- Profile Posts Start---------------->
+            <div class="profile-posts">
+                <div class="profile-top">
+                    <h3 class="profile-title">پست ها ({{ posts.count }})</h3>
+                    <a href="{% url 'blog:create_post' %}" class="profile-add-post">اضافه کردن پست (+)</a>
+                </div>
+                <div class="profile-table">
+                    <div class="tr tr-top">
+                        <span class="th">ردیف</span>
+                        <span class="th">مشاهده</span>
+                        <span class="th">ویرایش</span>
+                        <span class="th">حذف</span>
+                    </div>
+
+                    {% for post in posts %}
+                        <div class="tr">
+                            <span class="table-link">{{ forloop.counter }}</span>
+                            <a class="table-link" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                            <a class="table-link" href="#">ویرایش</a>
+                            <a class="table-link" href="#" id="post-delete" onclick="postDelete()">حذف</a>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <div class="delete-warning" id="delete-warning">
+                <h1 class="warning-title">آیا از حذف مطمئن هستید؟</h1>
+                <div class="delete-btn-wrapper">
+                    <a href="#" class="delete-btn" id="delete-cancel">انصراف</a>
+                    <a href="#" class="delete-btn" id="delete-accept">حذف</a>
+                </div>
+            </div>
+            <!---------------- Profile Posts End---------------->
+
+
+        </div>
+    </section>
+</div>
+{% endblock %}

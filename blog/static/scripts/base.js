@@ -19,3 +19,17 @@ function changeEnglishMonthToPersian(className){
 
 changeEnglishMonthToPersian("post__date")
 changeEnglishMonthToPersian("footer-post__date")
+
+
+const deleteWrapper = document.getElementById('delete-warning')
+const deleteCancelBtn = document.getElementById('delete-cancel')
+const postDeletee = document.getElementById('post-delete')
+
+
+function postDelete(){
+    deleteWrapper.classList.add('block');
+}
+
+deleteCancelBtn.addEventListener('click', (function(){
+    deleteWrapper.classList.remove('block');
+}))

@@ -22,3 +22,12 @@ class CommentForm(forms.ModelForm):
 class SearchForm(forms.Form):
     query = forms.CharField()
 
+
+# =====================================<< Create Post Form >>=====================================
+class CreatePostForm(forms.ModelForm):
+    image1 = forms.ImageField(required=False)
+    image2 = forms.ImageField(required=False)
+
+    class Meta:
+        model = Post
+        fields = ['title', 'description', 'reading_time']
