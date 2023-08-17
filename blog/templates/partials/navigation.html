@@ -2,10 +2,19 @@
     <nav class="nav">
         <a class="nav__logo" href="#"><span class="nav__logo--blue">و</span>بلاگ</a>
         <ul class="menu">
-            <li class="menu__item"><a href="#" class="menu__item-link">صفحه اصلی</a></li>
+            <li class="menu__item"><a href="{% url 'blog:post_list' %}" class="menu__item-link">صفحه اصلی</a></li>
             <li class="menu__item"><a href="#" class="menu__item-link">درباره ما</a></li>
             <li class="menu__item"><a href="{% url 'blog:ticket' %}" class="menu__item-link">تماس با ما</a></li>
         </ul>
-        <a href="#" class="nav__btn">ورود | ثبت نام</a>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'blog:profile_posts' %}" class="nav__btn">
+                {{ request.user.first_name }} {{ request.user.last_name }}
+                <a href="{% url 'blog:logout' %}" class="nav__btn-exit">خروج</a>
+            </a>
+        {% else  %}
+            <a href="{% url 'blog:login' %}" class="nav__btn">
+                ورود | ثبت نام
+            </a>
+        {% endif %}
     </nav>
 </div>

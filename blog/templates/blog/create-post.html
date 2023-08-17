@@ -26,30 +26,33 @@
                 </div>
 
                 <div class="contactus__elemetnt-wrapper">
+                    <label for="ticket__category" class="contactus__label" >دسته بندی</label>
+                    <select name="category" class="ticket__category" id="ticket__category" >
+                        {% for category in  categories %}
+                            <option class="ticket__category-option" value="{{ category }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="contactus__elemetnt-wrapper">
                     <span class="contactus__label">تصاویر</span>
                     <input name="image1" class="image-upload" type="file" id="" >
                     <input name="image2" class="image-upload" type="file" id="" >
                 </div>
 
-{#                <div class="contactus__elemetnt-wrapper">#}
-{#                    <span class="contactus__label">تصاویر موجود</span>#}
-{#                    <div class="create-posts-image-wrapper">#}
-{#                        <div class="create-post-image-wrapper">#}
-{#                            <img src="./images/01.png" class="create-post-image">#}
-{#                            <a href="#" class="delete-image">حذف</a>#}
-{#                        </div>#}
-{##}
-{#                        <div class="create-post-image-wrapper">#}
-{#                            <img src="./images/03.png" class="create-post-image">#}
-{#                            <a href="#" class="delete-image">حذف</a>#}
-{#                        </div>#}
-{##}
-{#                        <div class="create-post-image-wrapper">#}
-{#                            <img src="./images/05.png" class="create-post-image">#}
-{#                            <a href="#" class="delete-image">حذف</a>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
+                {% if post.images.count %}
+                    <div class="contactus__elemetnt-wrapper">
+                        <span class="contactus__label">تصاویر موجود</span>
+                        <div class="create-posts-image-wrapper">
+                            {% for image in post.images.all %}
+                                <div class="create-post-image-wrapper">
+                                    <img src="{{ image.image_file.url }}" class="create-post-image" alt="">
+                                    <a href="{% url 'blog:delete_image' image.id %}" class="delete-image">حذف</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
 {##}
                 <input type="submit" class="comment-form__btn" value="ایجاد پست">
             </form>

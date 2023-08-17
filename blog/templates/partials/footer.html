@@ -17,8 +17,11 @@
                     {% for post in last_posts %}
                         <div class="footer-post">
                         <a href="{{ post.get_absolute_url }}" class="footer-post__image-wrapper">
-                            <img class="footer-post__image" src="{{ post.images.first.image_file.url }}" alt="#">
-                        </a>
+                            {% if post.images.all %}
+                               <img class="post__image" src="{{ post.images.first.image_file.url }}" alt="#">
+                            {% else %}
+                               <img class="post__image" src="{% static 'images/image-not-found.png' %}" alt="#">
+                            {% endif %}                        </a>
                         <div class="footer-post-contetnt">
                             <a class="footer-post__title" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                             <p class="footer-post__date" >{{ post.publish|jformat:"%d %Y %B" }}</p>

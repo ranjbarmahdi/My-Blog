@@ -1,0 +1,52 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}Profile | Edit Personal Detail{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="contactus">
+            <h2 class="contactus__title">ویرایش اطلاعات شخصی</h2>
+            <form method="post" enctype="multipart/form-data" class="contactus__form">
+                {% csrf_token %}
+                <div class="contactus-top">
+                    <div class="contactus__elemetnt-wrapper">
+                        <label for="ticket__email" class="contactus__label">نام</label>
+                        <input name="first_name" type="text" id="ticket__email" required class="ticket__email">
+                    </div>
+
+                    <div class="contactus__elemetnt-wrapper" >
+                        <label for="ticket__phone" class="contactus__label">نام خانوادگی</label>
+                        <input name="last_name" type="text" id="ticket__phone" required class="ticket__phone">
+                    </div>
+
+                    <div class="contactus__elemetnt-wrapper" style="width: 100%;">
+                        <label for="ticket__phone" class="contactus__label" >ایمیل</label>
+                        <input name="email" type="email" id="ticket__phone" required class="ticket__phone">
+                    </div>
+
+                    <div class="contactus__elemetnt-wrapper" >
+                        <label for="ticket__phone" class="contactus__label">شغل</label>
+                        <input name="job" type="text" id="ticket__phone" required class="ticket__phone">
+                    </div>
+
+                    <div class="contactus__elemetnt-wrapper" >
+                        <label for="ticket__phone" class="contactus__label">تاریخ تولد</label>
+                        <input name="date_of_birth" type="date" id="ticket__phone" required class="ticket__phone">
+                    </div>
+                </div>
+
+                <div class="contactus__elemetnt-wrapper">
+                    <label for="ticket__description" class="contactus__label">بایو</label>
+                    <textarea name="bio" id="ticket__description" cols="30" rows="10" class="ticket__description" ></textarea>
+                </div>
+
+                <div class="contactus__elemetnt-wrapper">
+                    <span class="contactus__label">تصویر پروفایل</span>
+                    <input  class="image-upload" type="file" name="image" id="" >
+                </div>
+                <input type="submit" class="comment-form__btn" value="ویرایش">
+            </form>
+        </div>
+    </div>
+{% endblock %}

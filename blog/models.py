@@ -40,7 +40,7 @@ class Post(models.Model):
 
     # ----------------------------------------------------
     auther = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_posts", verbose_name='نویسنده')
-    category = models.ManyToManyField(Category, related_name='posts', verbose_name='دسته بندی')
+    category = models.ForeignKey(Category, related_name='posts', on_delete=models.CASCADE, verbose_name='دسته بندی')
 
     # ----------------------------------------------------
     title = models.CharField(max_length=250, verbose_name='عنوان')
@@ -74,9 +74,32 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:post_detail', args=[self.id])
 
+    def delete(self, *args, **kwargs):
+        for image in self.images.all():
+            storage, path = image.image_file.storage, image.image_file.path
+            storage.delete(path)
+        super().delete(*args, **kwargs)
+
     # ----------------------------------------------------
     def __str__(self):
         return self.title
+
+
+# =====================================<< Account Model >>=====================================
+class Account(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='account', verbose_name='اکانت')
+    date_of_birth = jmodels.jDateField(verbose_name='تاریخ تولد', null=True, blank=True)
+    bio = models.TextField(verbose_name='بایو')
+    image = ResizedImageField(upload_to='profile_images/', quality=60, size=[500, 500], crop=['middle', 'center'],
+                              verbose_name='تصویر', null=True, blank=True)
+    job = models.CharField(max_length=250, verbose_name='شغل', null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name= "اکانت"
+        verbose_name_plural= "اکانت ها"
 
 
 # =====================================<< Image Model >>=====================================
@@ -87,6 +110,7 @@ class Image(models.Model):
     description = models.TextField(null=True, blank=True, verbose_name='توضیحات')
     create = jmodels.jDateTimeField(auto_now_add=True)
 
+    # ----------------------------------------------------
     class Meta:
         ordering = ['-create']
         indexes = [
@@ -95,6 +119,13 @@ class Image(models.Model):
         verbose_name = "تصویر"
         verbose_name_plural = "تصویرها"
 
+    # ----------------------------------------------------
+    def delete(self, *args, **kwargs):
+        storage, path = self.image_file.storage, self.image_file.path
+        storage.delete(path)
+        super().delete(*args, **kwargs)
+
+    # ----------------------------------------------------
     def __str__(self):
         return self.title if self.title else "None"
 

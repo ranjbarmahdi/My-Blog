@@ -1,0 +1,48 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="contactus">
+            <h2 class="contactus__title">ثبت نام</h2>
+            <form method="post" class="contactus__form">
+                {% csrf_token %}
+                <div class="contactus-top">
+                    <div class="contactus__elemetnt-wrapper"  style="width: 100%;">
+                        <label for="ticket__name" class="contactus__label">نام کاربری</label>
+                        <input name="username" type="text" id="ticket__name" required class="ticket__name">
+                    </div>
+
+                    <div class="contactus__elemetnt-wrapper">
+                        <label for="ticket__email" class="contactus__label">نام</label>
+                        <input name="first_name" type="text" id="ticket__email" required class="ticket__email">
+                    </div>
+
+                    <div class="contactus__elemetnt-wrapper" >
+                        <label for="ticket__phone" class="contactus__label">نام خانوادگی</label>
+                        <input name="last_name" type="text" id="ticket__phone" required class="ticket__phone">
+                    </div>
+
+                    <div class="contactus__elemetnt-wrapper" style="width: 100%;">
+                        <label for="ticket__phone" class="contactus__label" >ایمیل</label>
+                        <input name="email" type="email" id="ticket__phone" required class="ticket__phone">
+                    </div>
+
+                    <div class="contactus__elemetnt-wrapper" >
+                        <label for="ticket__phone" class="contactus__label">رمز عبور</label>
+                        <input name="password" type="password" id="ticket__phone" required class="ticket__phone">
+                    </div>
+
+                    <div class="contactus__elemetnt-wrapper" >
+                        <label for="ticket__phone" class="contactus__label">تکرار رمز عبور</label>
+                        <input name="confirm_password" type="password" id="ticket__phone" required class="ticket__phone">
+                    </div>
+                </div>
+
+                <input type="submit" class="comment-form__btn" value="ثبت نام">
+            </form>
+        </div>
+    </div>
+{% endblock %}

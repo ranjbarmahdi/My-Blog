@@ -59,6 +59,13 @@ class CommentAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'post']
 
 
+# =====================================<< Account Admin >>=====================================
+@admin.register(Account)
+class AccountAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user', 'date_of_birth', 'job']
+    list_display_links = ['id', 'user']
+
+
 # =====================================<< Image Admin >>=====================================
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):

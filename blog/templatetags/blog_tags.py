@@ -24,8 +24,7 @@ def popular_tags(count=5):
 @register.simple_tag()
 def related_posts(post: Post, count=4):
     posts = Post.published.filter(title__contains=post.title)
-    for cat in post.category.all():
-        posts |= cat.posts.all()
+    posts |= Post.published.filter(category=post.category)
     posts = posts.distinct()
     return sample(list(posts), l if (l := len(posts)) < count else count)
 
